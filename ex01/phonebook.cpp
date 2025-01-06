@@ -1,23 +1,86 @@
 #include "PhoneBook.hpp"
 
-void read_data(PhoneBook &data, int index)
+
+
+/*
+	1 khasni ngad code f header
+	3 ndir ila dar search maytl3ch kolchi ola dar index itl3 lih d_secreret
+*/
+
+
+std::string read_data(std::string str , bool number)
+{
+	std::string line;
+
+	while (1)
+	{
+		std::cout << str << ": ";
+		if (!getline(std::cin, line))
+		{
+			exit(1);
+		}
+		std::cout << line << std::endl;
+		if (!line.length() || (number == true && valid_number(line)))
+		{
+			std::cout << str << " is required. Please try again." << std::endl;
+			continue; 
+		}
+		break;
+	}
+	return (line);
+}
+
+void add_data(PhoneBook &data, int index)
 {
 	std::string number;
 	std::string first_name;
 	std::string last_name;
+	std::string nickname;
+	std::string secreret;
 
 	std::cout << "enter your data:" << std::endl;
-	std::cout << "First Name: ";
-	getline(std::cin, first_name);
-	std::cout << "Last Name: ";
-	getline(std::cin, last_name);
-	std::cout << "Phone Number: ";
-	getline(std::cin, number);
-
-	data.set_contact_data(index, number, first_name, last_name);
-	data.get_contact_data(index);
+	first_name = read_data("First Name", false);
+	last_name = read_data("Last Name", false);
+	nickname = read_data("Nickname", false);
+	number = read_data("Phone number", true);
+	secreret = read_data("Darkest secret", false);
+	data.set_contact_data(index, number, first_name, last_name, nickname, secreret);
 }
 
+void search_for_data(PhoneBook data)
+{
+	std::string line;
+	int i_input;
+
+	print_data(data);
+	while (1)
+	{
+		std::cout << "Enter an index to display the data of it (0-7): ";
+		if (!getline(std::cin, line))
+			break;
+		if (line.length() != 1 || !isdigit(line[0]))
+		{
+			std::cout << "!! Input not valid !!" << std::endl;
+			print_data(data);
+		}
+		else
+		{
+			i_input = atoi(line.c_str());
+			if (i_input > 7)
+			{
+				std::cout << "!! Input not valid !!" << std::endl;
+				print_data(data);
+			}
+			else
+			{
+				std::cout << "-------------------------------------------\n";
+				data.get_contact_data(i_input, true);
+				std::cout << "-------------------------------------------\n";
+			}
+		}
+		break;
+	}
+}
 
 int main()
 {
@@ -27,19 +90,21 @@ int main()
 
 	while (1)
 	{
-		getline(std::cin, line);
-		if (!strcmp(line.c_str(), "ADD") && index < 8)
+		std::cout << "Enter one of three commands \"ADD, SEARCH, EXIT\":> " ;
+		if (!getline(std::cin, line))
+			break ;
+		else if (!strcmp(line.c_str(), "ADD"))
 		{
-			read_data(data , index);
+			if (index == 7)
+				index = 0;
+			add_data(data , index);
 			index++;
 		}
-		if (index == 8)
+		else if (!strcmp(line.c_str(), "SEARCH"))
+			search_for_data(data);
+		else if (!strcmp(line.c_str(), "EXIT"))
 			break ;
-		if (!strcmp(line.c_str(), "EXIT"))
-			break ;
-	}
-	for (int i = 0; i < 2; i++)
-	{
-		data.get_contact_data(i);
+		else
+			std::cout << "The program only accepts ADD, SEARCH and EXIT !!" << std::endl;
 	}
 }

@@ -1,15 +1,18 @@
 C++ = C++ -Wall -Wextra -Werror -std=c++98
-NAME = megaphone
+NAME = phonebook
 
 
-SRC = phonebook.cpp
+SRC = phonebook.cpp utils.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) phonebook.hpp
+$(NAME) : $(OBJ) PhoneBook.hpp Contact.hpp
 	$(C++) -o $(NAME) $(OBJ)
+
+%.o : %.cpp PhoneBook.hpp Contact.hpp
+	$(C++) -c $< -o $@
 
 clean :
 	rm -f $(OBJ)
