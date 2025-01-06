@@ -20,9 +20,16 @@
 				contacts[index].set_secreret(secret);
 			}
 
-			void get_contact_data(int index , bool helper)
+			int get_contact_data(int index , bool helper)
 			{
-				std::cout << index;
+				if (contacts[index].get_fname().empty() && index == 0)
+				{
+    				std::cout << "No data available. Try 'ADD'." << std::endl;
+					return (1);
+				}
+				else if (contacts[index].get_fname().empty())
+					return (1);
+				std::cout << " " << index;
 				std::cout << " | ";
 				if (contacts[index].get_fname().length() > 9)
 				{
@@ -47,10 +54,10 @@
 				}
 				else
 					std::cout << contacts[index].get_nickname();
-				std::cout << " | ";
-				std::cout << contacts[index].get_number();
 				if (helper == true)
-				{			
+				{
+					std::cout << " | ";
+					std::cout << contacts[index].get_number();
 					std::cout << " | ";
 					if (contacts[index].get_secreret().length() > 9)
 					{
@@ -61,7 +68,9 @@
 						std::cout << contacts[index].get_secreret();
 				}
 				std::cout << " | " << std::endl;
+				return (0);
 			}
+
 	};
 
 	int valid_number(std::string str);

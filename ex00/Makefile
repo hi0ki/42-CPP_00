@@ -1,4 +1,4 @@
-C++ = C++ std=c++98 -Wall -Wextra -Werror
+C++ = c++ std=c++98 -Wall -Wextra -Werror
 NAME = megaphone
 
 SRC = megaphone.cpp

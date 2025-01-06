@@ -12,12 +12,13 @@ int valid_number(std::string str)
 
 void print_data(PhoneBook data)
 {
-	std::cout << "-------------------------------------------\n";
+	std::cout << "    <--------------------->\n";
 	for(int index = 0; index < 8; index++)
 	{
-		data.get_contact_data(index, false);
-		std::cout << "-------------------------------------------\n";
+		if (data.get_contact_data(index, false))
+			break ;
 	}
+	std::cout << "    <--------------------->\n";
 }
 
 void print_string(std::string str, int start, int end)

@@ -1,13 +1,5 @@
 #include "PhoneBook.hpp"
 
-
-
-/*
-	1 khasni ngad code f header
-	3 ndir ila dar search maytl3ch kolchi ola dar index itl3 lih d_secreret
-*/
-
-
 std::string read_data(std::string str , bool number)
 {
 	std::string line;
@@ -73,9 +65,9 @@ void search_for_data(PhoneBook data)
 			}
 			else
 			{
-				std::cout << "-------------------------------------------\n";
+				std::cout << "    <-------------------------->\n";
 				data.get_contact_data(i_input, true);
-				std::cout << "-------------------------------------------\n";
+				std::cout << "    <-------------------------->\n";
 			}
 		}
 		break;
