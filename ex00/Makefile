@@ -1,4 +1,4 @@
-C++ = c++ std=c++98 -Wall -Wextra -Werror
+C++ = c++ -Wall -Wextra -Werror -std=c++98
 NAME = megaphone
 
 SRC = megaphone.cpp
@@ -8,7 +8,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(C++) -o $(NAME) $(OBJ)
+	$(C++) $(OBJ) -o $(NAME) 
 
 clean :
 	rm -f $(OBJ)
