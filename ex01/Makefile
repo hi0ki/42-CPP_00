@@ -2,7 +2,7 @@ C++ = c++ -Wall -Wextra -Werror -std=c++98
 NAME = program
 
 
-SRC = phonebook.cpp utils.cpp
+SRC = phonebook.cpp utils.cpp contact.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -2,16 +2,16 @@ C++ = c++ -Wall -Wextra -Werror -std=c++98
 NAME = program
 
 
-SRC = phonebook.cpp utils.cpp
+SRC = tests.cpp Account.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJ) PhoneBook.hpp Contact.hpp
+$(NAME) : $(OBJ) Account.hpp
 	$(C++) -o $(NAME) $(OBJ)
 
-%.o : %.cpp PhoneBook.hpp Contact.hpp
+%.o : %.cpp Account.hpp
 	$(C++) -c $< -o $@
 
 clean :
