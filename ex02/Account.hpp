@@ -20,6 +20,7 @@ class Account {
 
 
 public:
+
 	typedef Account		t;
 
 	static int	getNbAccounts( void );
@@ -54,7 +55,6 @@ private:
 	Account( void );
 
 };
-
 
 
 // ************************************************************************** //
