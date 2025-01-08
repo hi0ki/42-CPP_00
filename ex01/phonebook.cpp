@@ -87,7 +87,7 @@ int main()
 			break ;
 		else if (!strcmp(line.c_str(), "ADD"))
 		{
-			if (index == 7)
+			if (index == 8)
 				index = 0;
 			add_data(data , index);
 			index++;
